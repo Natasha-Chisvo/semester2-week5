@@ -15,28 +15,47 @@ int main(void){
 	
 	printf("Enter a hexadecimal: ");
 	scanf("%s", hex);
+	
 
 	int len = strlen(hex);
-	int power = 0;
 	int number;
 
 
 
-	for ( int i = len - 1; i>=0; i--){
+	for ( int i = 0; i<len; i++){
 
-		if (hex[i] >= '0' && hex[i] <= '9'){
+		if (hex[i] >= '0' && hex[i] <= '9'){   //note: values stored in ASCII
 			number = hex[i] - 48;
 			// check correct order printf("%d\n",number );
 		}
-		
-	
+		//check case by case basis for a-f and A-F
+		else if((hex[i] >= 'A' && hex[i] <= 'F') ||(hex[i] >= 'a' && hex[i] <= 'f')) {
+					switch (hex[i]) {
+						case 'A': case 'a': number = 10; break;
+						case 'B': case 'b': number = 11; break;
+						case 'C': case 'c': number = 12; break;
+						case 'D': case 'd': number = 13; break;
+						case 'E': case 'e': number = 14; break;
+						case 'F': case 'f': number = 15; break;
+
+					
+					
+				
+					}
+
+		}else{
+			printf("Error: Invalid Hexadecimal\n");
+			return 0;
+		}
+
+        //sum up values 
+		decimal = decimal * 16 + number ;
+
 	}
-	// if input contains invalid hex digit
-	// printf("Error: Invalid Hexadecimal\n");
-	
-	// print the decimal result
+
 	printf("decimal:%ld\n", decimal);
-	
+
+
 	return 0;
 	
-}
+	}
